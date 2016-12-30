@@ -1,0 +1,43 @@
+/* ==========================================================
+	Paiza - Kyoko Kirishima
+	https://paiza.jp/poh/joshibato/kirishima/result/9e7835b5
+  
+  Javascript code written by Max Chu.
+	http://fb.com/maxchu92
+========================================================== */
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', function (chunk) {
+    var line = chunk.toString();
+    if(line.length > 0){
+		var arrInput = line.split('\n');
+		var n = arrInput[0];
+		var t = arrInput[1].split(' ');
+		var m = arrInput[2];
+		for(var i = 3; i < arrInput.length - 1; i++){
+			var d = +arrInput[i];
+			var arrStepped = [];
+			while(true){
+				var stepOn = +t[d];
+				if(isNaN(stepOn)){
+					console.log('No');
+					break;					
+				}
+				arrStepped.push(d);
+				if(d === (t.length - 1)){
+					console.log('Yes');
+					break;
+				} else if(stepOn === 0) {
+					console.log('No');
+					break;
+				} else {
+					d += stepOn;
+					if(arrStepped.indexOf(d) >= 0){
+						console.log('No');
+						break;
+					}
+				}
+			}			
+		}
+	}
+});
