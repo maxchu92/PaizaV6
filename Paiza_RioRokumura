@@ -1,0 +1,38 @@
+/* ==========================================================
+	Paiza - Rio Rokumura
+	https://paiza.jp/poh/joshibato/rio/result/eec6c4c3
+  
+  Javascript code written by Max Chu.
+	http://fb.com/maxchu92
+========================================================== */
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+var input_string = '';
+process.stdin.on('data', function(chunk) {
+	input_string += chunk;
+});
+ 
+process.stdin.on('end', function() {
+	var lines = input_string.split('\n');
+	var N = +lines[0];
+	var X = 0, Y = 0;
+	for(var i = 0; i < N; i++) {
+		var line = lines[i+1].replace(/(^\s+)|(\s+$)/g, '').split(' ');
+		var op = +line[0];
+		var G = +line[1];
+		switch(op){
+			case 1:
+				X += G;
+				break;
+			case 2:
+				Y += G;
+				break;
+			case 3:
+				var sum = X + Y;
+				X = X-G*X/sum;
+				Y = Y-G*Y/sum;
+				break;
+		}
+	}
+	console.log(Math.trunc(Y/(X+Y)*100));
+});
